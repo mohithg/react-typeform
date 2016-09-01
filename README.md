@@ -1,4 +1,4 @@
-# react-typeform  [![Build Status](https://travis-ci.org/mohithg/react-infinite-scroll-meteor.svg?branch=master)](https://travis-ci.org/mohithg/react-infinite-scroll-meteor) [![npm version](https://badge.fury.io/js/react-infinite-scroll-meteor.svg)](https://badge.fury.io/js/react-infinite-scroll-meteor)
+# react-typeform  [![Build Status](https://travis-ci.org/mohithg/react-typeform.svg?branch=master)](https://travis-ci.org/mohithg/react-typeform)
 
 ## Description
 Renders each component at a time with a next button, and when all components are traversed then all components are shown at once for review with a submit button.
