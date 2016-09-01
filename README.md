@@ -1,4 +1,4 @@
-# react-typeform  [![Build Status](https://travis-ci.org/mohithg/react-typeform.svg?branch=master)](https://travis-ci.org/mohithg/react-typeform) [![GitHub version](https://badge.fury.io/gh/mohithg%2Freact-typeform.svg)](https://badge.fury.io/gh/mohithg%2Freact-typeform)
+# react-typeform  [![Build Status](https://travis-ci.org/mohithg/react-typeform.svg?branch=master)](https://travis-ci.org/mohithg/react-typeform) [![GitHub version](https://badge.fury.io/gh/mohithg%2Freact-typeform.svg)](https://badge.fury.io/gh/mohithg%2Freact-typeform) [![npm version](https://badge.fury.io/js/react-typeform.svg)](https://badge.fury.io/js/react-typeform)
 
 ## Description
 Renders each component at a time with a next button, and when all components are traversed then all components are shown at once for review with a submit button.
