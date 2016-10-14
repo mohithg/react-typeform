@@ -121,7 +121,7 @@ class typeForm extends React.Component {
  * Validating propTypes
  */
 typeForm.propTypes = {
-  children: React.PropTypes.element.isRequired,
+  children: React.PropTypes.array.isRequired,
   onSubmit: React.PropTypes.func,
   submitBtnText: React.PropTypes.string,
   submitBtnClass: React.PropTypes.string,
