@@ -10,6 +10,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _proptypes = require('proptypes');
+
+var _proptypes2 = _interopRequireDefault(_proptypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21,19 +25,19 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /**
  * Typeform component that renders each component of a form
  */
-var typeForm = function (_React$Component) {
-  _inherits(typeForm, _React$Component);
+var TypeForm = function (_React$Component) {
+  _inherits(TypeForm, _React$Component);
 
   /**
    * constructor
    */
-  function typeForm(props) {
-    _classCallCheck(this, typeForm);
+  function TypeForm(props) {
+    _classCallCheck(this, TypeForm);
 
     /**
      * Initial State
      */
-    var _this = _possibleConstructorReturn(this, (typeForm.__proto__ || Object.getPrototypeOf(typeForm)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (TypeForm.__proto__ || Object.getPrototypeOf(TypeForm)).call(this, props));
 
     _this.state = {
       current: 0
@@ -64,12 +68,18 @@ var typeForm = function (_React$Component) {
    */
 
 
-  _createClass(typeForm, [{
+  _createClass(TypeForm, [{
     key: 'setClass',
     value: function setClass(element, tfStyle) {
-      return _react2.default.cloneElement(element, {
-        tfStyle: tfStyle
-      });
+      if (!element) {
+        return;
+      }
+      var Element = element.type;
+      return _react2.default.createElement(
+        'div',
+        { style: tfStyle },
+        _react2.default.createElement(Element, element.props)
+      );
     }
 
     /**
@@ -157,7 +167,7 @@ var typeForm = function (_React$Component) {
     }
   }]);
 
-  return typeForm;
+  return TypeForm;
 }(_react2.default.Component);
 
 /**
@@ -165,20 +175,20 @@ var typeForm = function (_React$Component) {
  */
 
 
-typeForm.propTypes = {
-  children: _react2.default.PropTypes.element.isRequired,
-  onSubmit: _react2.default.PropTypes.func,
-  submitBtnText: _react2.default.PropTypes.string,
-  submitBtnClass: _react2.default.PropTypes.string,
-  nextBtnText: _react2.default.PropTypes.string,
-  nextBtnClass: _react2.default.PropTypes.string,
-  nextBtnOnClick: _react2.default.PropTypes.func
+TypeForm.propTypes = {
+  children: _proptypes2.default.array.isRequired,
+  onSubmit: _proptypes2.default.func,
+  submitBtnText: _proptypes2.default.string,
+  submitBtnClass: _proptypes2.default.string,
+  nextBtnText: _proptypes2.default.string,
+  nextBtnClass: _proptypes2.default.string,
+  nextBtnOnClick: _proptypes2.default.func
 };
 
 /**
  * Default Props
  */
-typeForm.defaultProps = {
+TypeForm.defaultProps = {
   nextBtnOnClick: function nextBtnOnClick() {},
   onSubmit: function onSubmit() {},
   submitBtnText: 'Save',
@@ -188,4 +198,4 @@ typeForm.defaultProps = {
 /**
  * export the typeform component
  */
-exports.default = typeForm;
+exports.default = TypeForm;
