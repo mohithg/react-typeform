@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'proptypes';
 
 /**
  * Typeform component that renders each component of a form
  */
-class typeForm extends React.Component {
+class TypeForm extends React.Component {
 
   /**
    * constructor
@@ -41,9 +42,13 @@ class typeForm extends React.Component {
    * Set className for component to show/hide
    */
   setClass(element, tfStyle) {
-    return React.cloneElement(element, {
-      tfStyle,
-    });
+    if (!element) { return; }
+    const Element = element.type;
+    return (<div style={tfStyle}>
+        <Element
+          {...element.props}  
+        />
+      </div>);
   }
 
   /**
@@ -120,20 +125,20 @@ class typeForm extends React.Component {
 /**
  * Validating propTypes
  */
-typeForm.propTypes = {
-  children: React.PropTypes.array.isRequired,
-  onSubmit: React.PropTypes.func,
-  submitBtnText: React.PropTypes.string,
-  submitBtnClass: React.PropTypes.string,
-  nextBtnText: React.PropTypes.string,
-  nextBtnClass: React.PropTypes.string,
-  nextBtnOnClick: React.PropTypes.func,
+TypeForm.propTypes = {
+  children: PropTypes.array.isRequired,
+  onSubmit: PropTypes.func,
+  submitBtnText: PropTypes.string,
+  submitBtnClass: PropTypes.string,
+  nextBtnText: PropTypes.string,
+  nextBtnClass: PropTypes.string,
+  nextBtnOnClick: PropTypes.func,
 };
 
 /**
  * Default Props
  */
-typeForm.defaultProps = {
+TypeForm.defaultProps = {
   nextBtnOnClick: () => {},
   onSubmit: () => {},
   submitBtnText: 'Save',
@@ -143,4 +148,4 @@ typeForm.defaultProps = {
 /**
  * export the typeform component
  */
-export default typeForm;
+export default TypeForm;

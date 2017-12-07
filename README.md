@@ -17,19 +17,6 @@ npm install react-typeform --save
 </div>
 ```
 
-```
-Transform this to
-```
-
-```
-<div style={this.props.tfStyle}>
-  ...Your individual component here
-</div>
-```
-
-So basically you need to add a style property to the top container of your component whose value is tfStyle property from the parent.
-
-
 ## Properties
 
 ### children (Required)
