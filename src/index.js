@@ -35,6 +35,8 @@ class TypeForm extends React.Component {
      * Binding this to methods
      */
     this.incState = this.incState.bind(this);
+    this.decState = this.decState.bind(this);
+    this.isFirstComponent = this.isFirstComponent.bind(this);
     this.isLastComponent = this.isLastComponent.bind(this);
   }
 
@@ -78,8 +80,21 @@ class TypeForm extends React.Component {
    * Increment State counter
    */
   incState() {
-    if (this.props.children.length > this.state.current) {
+    if (this.state.current < this.props.children.length) {
       const current = this.state.current + 1;
+      this.setState({
+        current,
+      });
+    }
+    this.props.nextBtnOnClick();
+  }
+
+  /**
+   * Deccrement State counter
+   */
+  decState() {
+    if (this.state.current > 0) {
+      const current = this.state.current - 1;
       this.setState({
         current,
       });
@@ -90,8 +105,15 @@ class TypeForm extends React.Component {
   /**
    * Check if last component
    */
+  isFirstComponent() {
+    return this.state.current === 0;
+  }
+
+  /**
+   * Check if last component
+   */
   isLastComponent() {
-    return this.props.children.length === this.state.current;
+    return this.state.current === this.props.children.length;
   }
 
   /**
@@ -101,6 +123,15 @@ class TypeForm extends React.Component {
     return (
       <div className="form-container">
         {this.getCurrentView(this.props.children)}
+        {
+          !this.isFirstComponent() &&
+            <button
+              onClick={this.decState}
+              className={this.props.backBtnClass}
+            >
+              {this.props.backBtnText}
+            </button>
+        }
         {
           this.isLastComponent() ?
             <button
@@ -133,6 +164,9 @@ TypeForm.propTypes = {
   nextBtnText: PropTypes.string,
   nextBtnClass: PropTypes.string,
   nextBtnOnClick: PropTypes.func,
+  backBtnText: PropTypes.string,
+  backBtnClass: PropTypes.string,
+  backBtnOnClick: PropTypes.func,
 };
 
 /**
@@ -140,9 +174,11 @@ TypeForm.propTypes = {
  */
 TypeForm.defaultProps = {
   nextBtnOnClick: () => {},
+  backBtnOnClick: () => {},
   onSubmit: () => {},
   submitBtnText: 'Save',
   nextBtnText: 'Next',
+  backBtnText: 'Back',
 };
 
 /**
