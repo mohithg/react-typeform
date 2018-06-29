@@ -99,7 +99,7 @@ class TypeForm extends React.Component {
         current,
       });
     }
-    this.props.nextBtnOnClick();
+    this.props.backBtnOnClick();
   }
 
   /**
