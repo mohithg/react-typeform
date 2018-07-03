@@ -59,6 +59,8 @@ var TypeForm = function (_React$Component) {
      * Binding this to methods
      */
     _this.incState = _this.incState.bind(_this);
+    _this.decState = _this.decState.bind(_this);
+    _this.isFirstComponent = _this.isFirstComponent.bind(_this);
     _this.isLastComponent = _this.isLastComponent.bind(_this);
     return _this;
   }
@@ -117,8 +119,24 @@ var TypeForm = function (_React$Component) {
   }, {
     key: 'incState',
     value: function incState() {
-      if (this.props.children.length > this.state.current) {
+      if (this.state.current < this.props.children.length) {
         var current = this.state.current + 1;
+        this.setState({
+          current: current
+        });
+      }
+      this.props.nextBtnOnClick();
+    }
+
+    /**
+     * Deccrement State counter
+     */
+
+  }, {
+    key: 'decState',
+    value: function decState() {
+      if (this.state.current > 0) {
+        var current = this.state.current - 1;
         this.setState({
           current: current
         });
@@ -131,9 +149,19 @@ var TypeForm = function (_React$Component) {
      */
 
   }, {
+    key: 'isFirstComponent',
+    value: function isFirstComponent() {
+      return this.state.current === 0;
+    }
+
+    /**
+     * Check if last component
+     */
+
+  }, {
     key: 'isLastComponent',
     value: function isLastComponent() {
-      return this.props.children.length === this.state.current;
+      return this.state.current === this.props.children.length;
     }
 
     /**
@@ -147,6 +175,14 @@ var TypeForm = function (_React$Component) {
         'div',
         { className: 'form-container' },
         this.getCurrentView(this.props.children),
+        !this.isFirstComponent() && _react2.default.createElement(
+          'button',
+          {
+            onClick: this.decState,
+            className: this.props.backBtnClass
+          },
+          this.props.backBtnText
+        ),
         this.isLastComponent() ? _react2.default.createElement(
           'button',
           {
@@ -182,7 +218,10 @@ TypeForm.propTypes = {
   submitBtnClass: _proptypes2.default.string,
   nextBtnText: _proptypes2.default.string,
   nextBtnClass: _proptypes2.default.string,
-  nextBtnOnClick: _proptypes2.default.func
+  nextBtnOnClick: _proptypes2.default.func,
+  backBtnText: _proptypes2.default.string,
+  backBtnClass: _proptypes2.default.string,
+  backBtnOnClick: _proptypes2.default.func
 };
 
 /**
@@ -190,9 +229,11 @@ TypeForm.propTypes = {
  */
 TypeForm.defaultProps = {
   nextBtnOnClick: function nextBtnOnClick() {},
+  backBtnOnClick: function backBtnOnClick() {},
   onSubmit: function onSubmit() {},
   submitBtnText: 'Save',
-  nextBtnText: 'Next'
+  nextBtnText: 'Next',
+  backBtnText: 'Back'
 };
 
 /**

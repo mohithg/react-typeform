@@ -42,6 +42,16 @@ Classname for next button
 ### nextBtnOnClick
 Function that executes when next button is clicked
 
+### backBtnText
+Text to be displayed for back button
+Default: Back
+
+### backBtnClass
+Classname for back button
+
+### backBtnOnClick
+Function that executes when back button is clicked
+
 
 
 ## Example
