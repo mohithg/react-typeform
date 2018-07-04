@@ -15,12 +15,14 @@
     "test-cov": "./node_modules/.bin/babel-node ./node_modules/.bin/isparta cover --report html --report text node_modules/.bin/_mocha",
     "build": "rm -rf build && ./node_modules/.bin/babel src --out-dir build",
     "clean": "rm -rf build",
-    "lint": "eslint src test"
+    "lint": "eslint src test",
+    "watch": "npm-watch build"
   },
   "dependencies": {
+    "mocha": "^5.2.0",
+    "prop-types": "^15.6.2",
     "react": "^16.2.0",
-    "react-dom": "^15.1.0",
-    "proptypes": "^1.1.0"
+    "react-dom": "^15.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -38,11 +40,26 @@
     "eslint-plugin-jsx-a11y": "^1.4.2",
     "eslint-plugin-react": "^5.1.1",
     "isparta": "^4.0.0",
-    "mocha": "^5.2.0"
+    "npm-watch": "^0.3.0",
+    "pre-commit": "^1.2.2"
   },
+  "pre-commit": [
+    "lint",
+    "build"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mohithg/react-typeform.git"
+  },
+  "watch": {
+    "build": {
+      "patterns": [
+        "src",
+        "test"
+      ],
+      "extensions": "js,jsx",
+      "quiet": true
+    }
   },
   "bugs": {
     "url": "https://github.com/mohithg/react-typeform.git/issues"

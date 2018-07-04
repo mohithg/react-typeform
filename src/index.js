@@ -1,11 +1,10 @@
 import React from 'react';
-import PropTypes from 'proptypes';
+import PropTypes from 'prop-types';
 
 /**
  * Typeform component that renders each component of a form
  */
 class TypeForm extends React.Component {
-
   /**
    * constructor
    */
@@ -44,11 +43,12 @@ class TypeForm extends React.Component {
    * Set className for component to show/hide
    */
   setClass(element, tfStyle) {
-    if (!element) { return; }
+    if (!element) { return null; }
     const Element = element.type;
-    return (<div style={tfStyle}>
+    return (
+      <div style={tfStyle}>
         <Element
-          {...element.props}  
+          {...element.props}
         />
       </div>);
   }

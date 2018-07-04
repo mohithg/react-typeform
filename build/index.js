@@ -10,9 +10,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _proptypes = require('proptypes');
+var _propTypes = require('prop-types');
 
-var _proptypes2 = _interopRequireDefault(_proptypes);
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -74,7 +74,7 @@ var TypeForm = function (_React$Component) {
     key: 'setClass',
     value: function setClass(element, tfStyle) {
       if (!element) {
-        return;
+        return null;
       }
       var Element = element.type;
       return _react2.default.createElement(
@@ -141,7 +141,7 @@ var TypeForm = function (_React$Component) {
           current: current
         });
       }
-      this.props.nextBtnOnClick();
+      this.props.backBtnOnClick();
     }
 
     /**
@@ -212,16 +212,16 @@ var TypeForm = function (_React$Component) {
 
 
 TypeForm.propTypes = {
-  children: _proptypes2.default.array.isRequired,
-  onSubmit: _proptypes2.default.func,
-  submitBtnText: _proptypes2.default.string,
-  submitBtnClass: _proptypes2.default.string,
-  nextBtnText: _proptypes2.default.string,
-  nextBtnClass: _proptypes2.default.string,
-  nextBtnOnClick: _proptypes2.default.func,
-  backBtnText: _proptypes2.default.string,
-  backBtnClass: _proptypes2.default.string,
-  backBtnOnClick: _proptypes2.default.func
+  children: _propTypes2.default.array.isRequired,
+  onSubmit: _propTypes2.default.func,
+  submitBtnText: _propTypes2.default.string,
+  submitBtnClass: _propTypes2.default.string,
+  nextBtnText: _propTypes2.default.string,
+  nextBtnClass: _propTypes2.default.string,
+  nextBtnOnClick: _propTypes2.default.func,
+  backBtnText: _propTypes2.default.string,
+  backBtnClass: _propTypes2.default.string,
+  backBtnOnClick: _propTypes2.default.func
 };
 
 /**
