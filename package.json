@@ -1,6 +1,6 @@
 {
   "name": "react-typeform",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Fullscreen form or typeform in React",
   "main": "build/index.js",
   "keywords": [
