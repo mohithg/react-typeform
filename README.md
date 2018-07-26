@@ -52,7 +52,9 @@ Classname for back button
 ### backBtnOnClick
 Function that executes when back button is clicked
 
-
+### showReviewView
+Boolean that sets whether to show a review view as the final step
+Default: true
 
 ## Example
 

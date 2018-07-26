@@ -22,30 +22,22 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-/**
- * Typeform component that renders each component of a form
- */
+/** Typeform component that renders each component of a form */
 var TypeForm = function (_React$Component) {
   _inherits(TypeForm, _React$Component);
 
-  /**
-   * constructor
-   */
+  /** constructor */
   function TypeForm(props) {
     _classCallCheck(this, TypeForm);
 
-    /**
-     * Initial State
-     */
+    /** Initial State */
     var _this = _possibleConstructorReturn(this, (TypeForm.__proto__ || Object.getPrototypeOf(TypeForm)).call(this, props));
 
     _this.state = {
       current: 0
     };
 
-    /**
-     * Styles
-     */
+    /** Styles */
     _this.styles = {
       tfShow: {
         display: 'block'
@@ -55,9 +47,7 @@ var TypeForm = function (_React$Component) {
       }
     };
 
-    /**
-     * Binding this to methods
-     */
+    /** Binding this to methods */
     _this.incState = _this.incState.bind(_this);
     _this.decState = _this.decState.bind(_this);
     _this.isFirstComponent = _this.isFirstComponent.bind(_this);
@@ -65,9 +55,7 @@ var TypeForm = function (_React$Component) {
     return _this;
   }
 
-  /**
-   * Set className for component to show/hide
-   */
+  /** Set className for component to show/hide */
 
 
   _createClass(TypeForm, [{
@@ -84,16 +72,14 @@ var TypeForm = function (_React$Component) {
       );
     }
 
-    /**
-     * Get the current component to show on screen
-     */
+    /** Get the current component to show on screen */
 
   }, {
     key: 'getCurrentView',
     value: function getCurrentView(children) {
       var _this2 = this;
 
-      var allChildren = void 0;
+      var allChildren = [];
       allChildren = _react2.default.Children.map(children, function (child, index) {
         var currentChild = _this2.setClass(child, _this2.styles.tfHide);
         if (index === _this2.state.current) {
@@ -101,20 +87,23 @@ var TypeForm = function (_React$Component) {
         }
         return currentChild;
       });
-      /**
-       * If all elements are shown then show a review screen
-       */
-      if (this.isLastComponent()) {
-        allChildren = _react2.default.Children.map(children, function (child) {
-          return _this2.setClass(child, _this2.styles.tfShow);
+      /** If all elements are shown then conditionally show a review screen */
+      if (this.isLastComponent() && this.props.showReviewView) {
+        _react2.default.Children.map(children, function (child) {
+          return allChildren.push(_this2.setClass(child, _this2.styles.tfShow));
         });
+        if (this.props.completionText) {
+          allChildren.push(_react2.default.createElement(
+            'div',
+            { className: 'form-completion-text' },
+            this.props.completionText
+          ));
+        }
       }
       return allChildren;
     }
 
-    /**
-     * Increment State counter
-     */
+    /** Increment State counter */
 
   }, {
     key: 'incState',
@@ -128,9 +117,7 @@ var TypeForm = function (_React$Component) {
       this.props.nextBtnOnClick();
     }
 
-    /**
-     * Deccrement State counter
-     */
+    /** Decrement State counter */
 
   }, {
     key: 'decState',
@@ -144,9 +131,7 @@ var TypeForm = function (_React$Component) {
       this.props.backBtnOnClick();
     }
 
-    /**
-     * Check if last component
-     */
+    /** Check if last component */
 
   }, {
     key: 'isFirstComponent',
@@ -154,19 +139,15 @@ var TypeForm = function (_React$Component) {
       return this.state.current === 0;
     }
 
-    /**
-     * Check if last component
-     */
+    /** Check if last component */
 
   }, {
     key: 'isLastComponent',
     value: function isLastComponent() {
-      return this.state.current === this.props.children.length;
+      return this.props.showReviewView ? this.state.current === this.props.children.length : this.state.current === this.props.children.length - 1;
     }
 
-    /**
-     * render the typeform
-     */
+    /** render the typeform */
 
   }, {
     key: 'render',
@@ -206,37 +187,34 @@ var TypeForm = function (_React$Component) {
   return TypeForm;
 }(_react2.default.Component);
 
-/**
- * Validating propTypes
- */
+/** Validating propTypes */
 
 
 TypeForm.propTypes = {
+  backBtnClass: _propTypes2.default.string,
+  backBtnOnClick: _propTypes2.default.func,
+  backBtnText: _propTypes2.default.string,
   children: _propTypes2.default.array.isRequired,
-  onSubmit: _propTypes2.default.func,
-  submitBtnText: _propTypes2.default.string,
-  submitBtnClass: _propTypes2.default.string,
-  nextBtnText: _propTypes2.default.string,
+  completionText: _propTypes2.default.string,
   nextBtnClass: _propTypes2.default.string,
   nextBtnOnClick: _propTypes2.default.func,
-  backBtnText: _propTypes2.default.string,
-  backBtnClass: _propTypes2.default.string,
-  backBtnOnClick: _propTypes2.default.func
+  nextBtnText: _propTypes2.default.string,
+  onSubmit: _propTypes2.default.func,
+  showReviewView: _propTypes2.default.bool,
+  submitBtnClass: _propTypes2.default.string,
+  submitBtnText: _propTypes2.default.string
 };
 
-/**
- * Default Props
- */
+/** Default Props */
 TypeForm.defaultProps = {
-  nextBtnOnClick: function nextBtnOnClick() {},
   backBtnOnClick: function backBtnOnClick() {},
-  onSubmit: function onSubmit() {},
-  submitBtnText: 'Save',
+  backBtnText: 'Back',
+  nextBtnOnClick: function nextBtnOnClick() {},
   nextBtnText: 'Next',
-  backBtnText: 'Back'
+  onSubmit: function onSubmit() {},
+  showReviewView: true,
+  submitBtnText: 'Save'
 };
 
-/**
- * export the typeform component
- */
+/** export the typeform component */
 exports.default = TypeForm;
