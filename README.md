@@ -58,9 +58,9 @@ Default: true
 
 ## Example
 
-```
+```jsx
 import React from 'react';
-import Typeform from 'react-typeform';
+import TypeForm from 'react-typeform';
 
 class TypeFormComponent extends React.Component {
 
